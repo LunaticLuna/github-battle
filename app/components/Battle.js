@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FaUserFriends, FaFighterJet, FaTrophy,FaTimesCircle } from 'react-icons/fa'
 import Results from './Results'
+import Loading from './Loading'
 
 
 function Instructions(){
@@ -141,9 +142,18 @@ export default class Battle extends React.Component{
     const {playerOne, playerTwo,battle} = this.state
 
     if (battle===true){
-      return <Results playerOne = {playerOne} playerTwo = {playerTwo} />
+      return (
+        <Results
+          playerOne={playerOne}
+          playerTwo={playerTwo}
+          onReset={() => this.setState({
+            playerOne: null,
+            playerTwo: null,
+            battle: false
+          })}
+        />
+      )    
     }
-
     return (
       <React.Fragment>
         <Instructions />
